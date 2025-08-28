@@ -1,0 +1,31 @@
+import { Component, EventEmitter, Output } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { decrement, increment, reset } from '../states/counter.actions';
+import { counterState } from '../states/counter.state';
+
+@Component({
+  selector: 'app-counter-button',
+  templateUrl: './counter-button.component.html',
+  styleUrls: ['./counter-button.component.css'],
+})
+export class CounterButtonComponent {
+  // this is for demo purpose only to show how to use @Output and EventEmitter in Angular components
+  // @Output()
+  // incrementClick: EventEmitter<void> = new EventEmitter<void>();
+  // @Output()
+  // decrementClick: EventEmitter<void> = new EventEmitter<void>();
+  // @Output()
+  // resetClick: EventEmitter<void> = new EventEmitter<void>();
+
+  constructor(private store: Store<{ counter: counterState }>) {}
+
+  onIncrement() {
+    this.store.dispatch(increment());
+  }
+  onDecrement() {
+    this.store.dispatch(decrement());
+  }
+  onReset() {
+    this.store.dispatch(reset());
+  }
+}
