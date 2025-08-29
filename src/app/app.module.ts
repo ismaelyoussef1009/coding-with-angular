@@ -15,6 +15,7 @@ import { CustomInputComponent } from './counter/custom-input/custom-input.compon
 import { FormsModule } from '@angular/forms';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { coursesReducer } from './courses/state/courses.reducer';
+import { appReducer } from './store/app.state';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { coursesReducer } from './courses/state/courses.reducer';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    StoreModule.forRoot({ counter: counterReducer, courses: coursesReducer }),
+    StoreModule.forRoot(appReducer),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
   ],
   providers: [],
