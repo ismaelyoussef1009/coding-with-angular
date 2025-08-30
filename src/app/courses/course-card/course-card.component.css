@@ -1,16 +1,28 @@
 .course-card {
   width: 360px;
   border: #cdcdcd 1.5px solid;
+  margin: 5px 5px;
+  border-radius: 8px;
 }
-.course-title {
-  padding: 15px 10px;
-}
+
 .course-image {
   width: 360px;
   height: 200px;
+  border-radius: 8px;
 }
+
+.course-image img {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.course-title {
+  padding: 15px 10px;
+}
+
 .course-description {
   padding: 15px 10px;
+  font-style: oblique;
 }
 .course-description-text {
   margin-top: 10px;
@@ -26,7 +38,7 @@
   width: 50%;
   font-weight: bold;
   font-size: 20px;
-  padding-left: 20px;
+  padding-top: 8px;
   color: #28282b;
 }
 .course-actions {
@@ -43,6 +55,7 @@
   color: white;
   border-radius: 50%;
   margin-right: 7px;
+  cursor: pointer;
 }
 .course-view {
   background-color: #2ecc71;

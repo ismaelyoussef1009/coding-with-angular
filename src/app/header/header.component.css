@@ -49,3 +49,7 @@ a:hover {
 .active {
   color: #a19c9f;
 }
+
+h2 {
+  font-style: oblique;
+}

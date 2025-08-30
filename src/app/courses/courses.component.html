@@ -10,6 +10,8 @@
   </div>
 
   <div class="course-list-container">
-    <app-course-card></app-course-card>
+    <div class="course-row" *ngFor="let cr of courses$ | async">
+      <app-course-card [course]="cr"></app-course-card>
+    </div>
   </div>
 </div>
