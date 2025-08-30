@@ -17,6 +17,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { coursesReducer } from './courses/state/courses.reducer';
 import { appReducer } from './store/app.state';
 import { CourseCardComponent } from './courses/course-card/course-card.component';
+import { AddCourseComponent } from './courses/add-course/add-course.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { CourseCardComponent } from './courses/course-card/course-card.component
     CounterButtonComponent,
     CustomInputComponent,
     CourseCardComponent,
+    AddCourseComponent,
   ],
   imports: [
     BrowserModule,

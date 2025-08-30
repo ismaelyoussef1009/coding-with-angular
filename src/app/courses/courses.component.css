@@ -11,7 +11,7 @@
   width: 30%;
 }
 .course-header-search {
-  width: 70%;
+  width: 150%;
   text-align: right;
 }
 .course-header-search input {
@@ -38,6 +38,25 @@
 
 .course-header-search button:hover {
   background-color: #f36608da;
+  transition: 0.3s;
+}
+
+.course-create {
+  width: 20%;
+  text-align: right;
+}
+
+.create-course-button {
+  padding: 9px 15px;
+  border: none;
+  background-color: #76008e;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.create-course-button:hover {
+  background-color: #9b00b3;
   transition: 0.3s;
 }
 .course-list-container {
