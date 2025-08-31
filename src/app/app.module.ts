@@ -12,7 +12,7 @@ import { CounterButtonComponent } from './counter/counter-button/counter-button.
 import { StoreModule } from '@ngrx/store';
 import { counterReducer } from './counter/states/counter.reducer';
 import { CustomInputComponent } from './counter/custom-input/custom-input.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { coursesReducer } from './courses/state/courses.reducer';
 import { appReducer } from './store/app.state';
@@ -36,6 +36,7 @@ import { AddCourseComponent } from './courses/add-course/add-course.component';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     StoreModule.forRoot(appReducer),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
   ],
