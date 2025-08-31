@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.state';
-import { showCreateForm } from '../state/courses.action';
+import { addCourse, showCreateForm } from '../state/courses.action';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -47,5 +47,11 @@ export class AddCourseComponent implements OnInit {
 
   onCreateCourse() {
     console.log(this.courseForm.value);
+
+    if (this.courseForm.valid) {
+      this.store.dispatch(addCourse({ course: this.courseForm.value }));
+      this.hideCreateForm();
+      this.courseForm.reset();
+    }
   }
 }
