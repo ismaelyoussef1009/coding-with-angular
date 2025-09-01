@@ -7,6 +7,6 @@ export const getCourses = createSelector(getCoursesState, (state) => {
   return state.courses;
 });
 
-export const showCreateCourseForm = createSelector(getCoursesState, (state) => {
+export const getShowForm = createSelector(getCoursesState, (state) => {
   return state.showCreateCourseForm;
 });

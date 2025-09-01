@@ -1,7 +1,7 @@
-import { courses } from 'src/app/models/courses.models';
+import { Courses } from 'src/app/models/courses.models';
 
 export interface CoursesState {
-  courses: courses[];
+  courses: Courses[];
   showCreateCourseForm: boolean;
 }
 

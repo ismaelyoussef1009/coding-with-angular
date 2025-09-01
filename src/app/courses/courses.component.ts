@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { courses } from '../models/courses.models';
+import { Courses } from '../models/courses.models';
 import { Store } from '@ngrx/store';
 import { AppState } from '../store/app.state';
-import { getCourses, showCreateCourseForm } from './state/courses.selector';
+import { getCourses, getShowForm } from './state/courses.selector';
 import { Observable } from 'rxjs';
-import { showCreateForm } from './state/courses.action';
+import { showForm } from './state/courses.action';
 
 @Component({
   selector: 'app-courses',
@@ -12,16 +12,16 @@ import { showCreateForm } from './state/courses.action';
   styleUrls: ['./courses.component.css'],
 })
 export class CoursesComponent implements OnInit {
-  courses$: Observable<courses[]> | null = null;
+  courses$: Observable<Courses[]> | null = null;
   showForm$: Observable<boolean> | null = null;
 
   constructor(private store: Store<AppState>) {}
   ngOnInit(): void {
     this.courses$ = this.store.select(getCourses);
-    this.showForm$ = this.store.select(showCreateCourseForm);
+    this.showForm$ = this.store.select(getShowForm);
   }
 
   showCreateForm() {
-    this.store.dispatch(showCreateForm({ value: true }));
+    this.store.dispatch(showForm({ value: true }));
   }
 }

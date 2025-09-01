@@ -1,14 +1,16 @@
 import { createReducer, on } from '@ngrx/store';
 import { initialState } from './courses.state';
-import { addCourse, showCreateForm } from './courses.action';
+import { addCourse, showForm } from './courses.action';
 
 export const coursesReducer = createReducer(
   initialState,
-  on(showCreateForm, (state, action) => {
+  on(showForm, (state, action) => {
     return { ...state, showCreateCourseForm: action.value };
   }),
 
-  on(addCourse, (state, { course }) => {
+  on(addCourse, (state, action) => {
+    const course = { ...action.course };
+    course.id = state.courses.length + 1;
     return {
       ...state,
       courses: [...state.courses, course],

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { courses } from 'src/app/models/courses.models';
+import { Courses } from 'src/app/models/courses.models';
 
 @Component({
   selector: 'app-course-card',
@@ -7,5 +7,5 @@ import { courses } from 'src/app/models/courses.models';
   styleUrls: ['./course-card.component.css'],
 })
 export class CourseCardComponent {
-  @Input() course: courses | null = null;
+  @Input() course: Courses | null = null;
 }
