@@ -17,6 +17,8 @@
           />
         </div>
 
+        <div class="validation-error">{{ showTitleValidationErrors() }}</div>
+
         <div class="form-field">
           <label for="description">Description</label>
           <textarea
@@ -24,6 +26,10 @@
             placeholder="Provide a detailed description of the course"
             formControlName="description"
           ></textarea>
+        </div>
+
+        <div class="validation-error">
+          {{ showDescriptionValidationErrors() }}
         </div>
 
         <div class="form-field">
@@ -34,6 +40,8 @@
             formControlName="author"
           />
         </div>
+
+        <div class="validation-error">{{ showAuthorValidationErrors() }}</div>
 
         <div class="form-field">
           <label for="price">Price</label>
