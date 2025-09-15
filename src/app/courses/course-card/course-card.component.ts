@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Courses } from 'src/app/models/courses.models';
 import { AppState } from 'src/app/store/app.state';
 import {
+  deleteCourse,
   setEditMode,
   setSelectedCourse,
   showForm,
@@ -21,5 +22,9 @@ export class CourseCardComponent {
     this.store.dispatch(showForm({ value: true }));
     this.store.dispatch(setEditMode({ editMode: true }));
     this.store.dispatch(setSelectedCourse({ course: this.course }));
+  }
+
+  onCourseDelete() {
+    this.store.dispatch(deleteCourse({ id: this.course?.id }));
   }
 }

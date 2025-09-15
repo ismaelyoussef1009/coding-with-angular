@@ -25,3 +25,8 @@ export const updateCourse = createAction(
   'updateCourse',
   props<{ course: Courses }>()
 );
+
+export const deleteCourse = createAction(
+  'deleteCourse',
+  props<{ id: number }>()
+);
