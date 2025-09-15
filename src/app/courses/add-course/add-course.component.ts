@@ -1,8 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.state';
-import { addCourse, showForm } from '../state/courses.action';
+import {
+  addCourse,
+  setEditMode,
+  setSelectedCourse,
+  showForm,
+  updateCourse,
+} from '../state/courses.action';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { getEditMode, getSelectedCourse } from '../state/courses.selector';
+import { Courses } from 'src/app/models/courses.models';
 
 @Component({
   selector: 'app-add-course',
@@ -11,14 +19,24 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class AddCourseComponent implements OnInit {
   courseForm: FormGroup;
+  editMode: boolean = false;
+  course: Courses = null;
   constructor(private store: Store<AppState>) {}
 
   ngOnInit() {
+    this.store.select(getEditMode).subscribe((value) => {
+      this.editMode = value;
+    });
+    this.init();
+    this.subscribeToSelectedCourse();
+  }
+
+  init() {
     this.courseForm = new FormGroup({
       title: new FormControl(null, [
         Validators.required,
         Validators.minLength(6),
-        Validators.maxLength(20),
+        Validators.maxLength(30),
       ]),
 
       description: new FormControl(null, [
@@ -34,6 +52,18 @@ export class AddCourseComponent implements OnInit {
     });
   }
 
+  subscribeToSelectedCourse() {
+    this.store.select(getSelectedCourse).subscribe((data) => {
+      this.course = data;
+    });
+
+    if (this.editMode && this.course) {
+      this, this.courseForm.patchValue(this.course);
+    } else {
+      this.courseForm.reset();
+    }
+  }
+
   hideCreateForm() {
     this.store.dispatch(showForm({ value: false }));
   }
@@ -45,14 +75,32 @@ export class AddCourseComponent implements OnInit {
     }
   }
 
-  onCreateCourse() {
-    console.log(this.courseForm.value);
-
+  onCreateOrUpdateCourse() {
     if (!this.courseForm.valid) {
       return;
     }
-    this.store.dispatch(addCourse({ course: this.courseForm.value }));
+
+    if (this.editMode) {
+      const updatedCourse: Courses = {
+        id: this.course.id,
+        title: this.courseForm.value.title,
+        description: this.courseForm.value.description,
+        author: this.courseForm.value.author,
+        price: +this.courseForm.value.price,
+        image: this.courseForm.value.image,
+      };
+
+      // Dispatch update action here
+      this.store.dispatch(updateCourse({ course: updatedCourse }));
+    } else {
+      this.store.dispatch(addCourse({ course: this.courseForm.value }));
+    }
+
     this.hideCreateForm();
+    // this.store.dispatch(showForm({ value: false }));
+    this.store.dispatch(setEditMode({ editMode: false }));
+    this.store.dispatch(setSelectedCourse({ course: null }));
+
     this.courseForm.reset();
   }
 

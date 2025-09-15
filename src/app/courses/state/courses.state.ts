@@ -3,6 +3,8 @@ import { Courses } from 'src/app/models/courses.models';
 export interface CoursesState {
   courses: Courses[];
   showCreateCourseForm: boolean;
+  isEditMode: boolean;
+  selectedCourse: Courses;
 }
 
 export const initialState: CoursesState = {
@@ -23,24 +25,9 @@ export const initialState: CoursesState = {
       author: 'John Doe',
       price: 49.99,
     },
-    // {
-    //   id: 3,
-    //   title: 'Advanced TypeScript',
-    //   description: 'Deep dive into TypeScript features and best practices.',
-    //   image: 'assets/images/js.png',
-    //   author: 'John Doe',
-    //   price: 49.99,
-    // },
-
-    // {
-    //   id: 4,
-    //   title: 'Advanced TypeScript',
-    //   description: 'Deep dive into TypeScript features and best practices.',
-    //   image: 'assets/images/js.png',
-    //   author: 'John Doe',
-    //   price: 49.99,
-    // },
   ],
 
   showCreateCourseForm: false,
+  isEditMode: false,
+  selectedCourse: null,
 };

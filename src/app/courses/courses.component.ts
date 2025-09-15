@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../store/app.state';
 import { getCourses, getShowForm } from './state/courses.selector';
 import { Observable } from 'rxjs';
-import { showForm } from './state/courses.action';
+import { setEditMode, showForm } from './state/courses.action';
 
 @Component({
   selector: 'app-courses',
@@ -22,6 +22,7 @@ export class CoursesComponent implements OnInit {
   }
 
   showCreateForm() {
+    this.store.dispatch(setEditMode({ editMode: false }));
     this.store.dispatch(showForm({ value: true }));
   }
 }

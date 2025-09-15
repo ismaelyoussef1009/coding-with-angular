@@ -10,6 +10,10 @@
     <div class="course-description-text">
       <p>{{ course?.description?.substring(0, 50) }}...</p>
     </div>
+
+    <div class="course-author">
+      <h5>Author: {{ course?.author }}</h5>
+    </div>
   </div>
   <div class="course-card-footer">
     <div class="course-price">Price ${{ course?.price }}</div>
@@ -17,7 +21,7 @@
       <button class="btn-action course-view">
         <i class="fa fa-info" aria-hidden="true"></i>
       </button>
-      <button class="btn-action course-edit">
+      <button class="btn-action course-edit" (click)="onCourseEdit()">
         <i class="fa fa-pencil" aria-hidden="true"></i>
       </button>
       <button class="btn-action course-delete">
