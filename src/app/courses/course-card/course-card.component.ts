@@ -25,6 +25,11 @@ export class CourseCardComponent {
   }
 
   onCourseDelete() {
-    this.store.dispatch(deleteCourse({ id: this.course?.id }));
+    const confirmDelete = confirm(
+      'Are you sure you want to delete this course?'
+    );
+    if (confirmDelete) {
+      this.store.dispatch(deleteCourse({ id: this.course?.id }));
+    }
   }
 }
