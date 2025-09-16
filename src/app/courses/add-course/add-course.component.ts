@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.state';
 import {
@@ -11,22 +11,29 @@ import {
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { getEditMode, getSelectedCourse } from '../state/courses.selector';
 import { Courses } from 'src/app/models/courses.models';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-add-course',
   templateUrl: './add-course.component.html',
   styleUrls: ['./add-course.component.css'],
 })
-export class AddCourseComponent implements OnInit {
+export class AddCourseComponent implements OnInit, OnDestroy {
   courseForm: FormGroup;
   editMode: boolean = false;
   course: Courses = null;
+
+  editMdeSubscription: Subscription;
+  selectedCourseSubscription: Subscription;
+
   constructor(private store: Store<AppState>) {}
 
   ngOnInit() {
-    this.store.select(getEditMode).subscribe((value) => {
-      this.editMode = value;
-    });
+    this.editMdeSubscription = this.store
+      .select(getEditMode)
+      .subscribe((value) => {
+        this.editMode = value;
+      });
     this.init();
     this.subscribeToSelectedCourse();
   }
@@ -53,9 +60,11 @@ export class AddCourseComponent implements OnInit {
   }
 
   subscribeToSelectedCourse() {
-    this.store.select(getSelectedCourse).subscribe((data) => {
-      this.course = data;
-    });
+    this.selectedCourseSubscription = this.store
+      .select(getSelectedCourse)
+      .subscribe((data) => {
+        this.course = data;
+      });
 
     if (this.editMode && this.course) {
       this, this.courseForm.patchValue(this.course);
@@ -148,5 +157,16 @@ export class AddCourseComponent implements OnInit {
       }
     }
     return '';
+  }
+
+  ngOnDestroy() {
+    if (this.editMdeSubscription) {
+      this.editMdeSubscription.unsubscribe();
+      console.log('Edit mode subscription destroyed');
+    }
+    if (this.selectedCourseSubscription) {
+      this.selectedCourseSubscription.unsubscribe();
+      console.log('Selected course subscription destroyed');
+    }
   }
 }

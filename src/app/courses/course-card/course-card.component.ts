@@ -24,6 +24,7 @@ export class CourseCardComponent {
     this.store.dispatch(setSelectedCourse({ course: this.course }));
   }
 
+  // come back here to create a notification service
   onCourseDelete() {
     const confirmDelete = confirm(
       'Are you sure you want to delete this course?'
