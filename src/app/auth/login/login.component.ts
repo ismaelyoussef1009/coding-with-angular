@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { User } from 'src/app/models/user.models';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/app.state';
+import { loginStart } from '../states/auth.actions';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +12,10 @@ import { User } from 'src/app/models/user.models';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private store: Store<AppState>
+  ) {}
 
   loginForm: FormGroup;
   loggedInUser: User;
@@ -24,14 +30,16 @@ export class LoginComponent implements OnInit {
 
   onLogin() {
     const { email, password } = this.loginForm.value;
-    this.authService.login(email, password).subscribe(
-      (response) => {
-        this.loggedInUser = response;
-      },
-      (error) => {
-        this.loggedInUser = error;
-      }
-    );
+    // this.authService.login(email, password).subscribe(
+    //   (response) => {
+    //     this.loggedInUser = response;
+    //   },
+    //   (error) => {
+    //     this.loggedInUser = error;
+    //   }
+    // );
+
+    this.store.dispatch(loginStart({ email, password }));
   }
 
   validateEmail() {
