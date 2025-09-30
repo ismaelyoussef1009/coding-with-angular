@@ -1,8 +1,14 @@
 <app-loader *ngIf="displayLoading$ | async"></app-loader>
 
+<app-toaster
+  *ngIf="errorMessage$ | async"
+  [errorMessage]="errorMessage$ | async"
+></app-toaster>
+
 <div class="app-container">
   <!-- USE HEADER COMPONENT SELECTOR HERE -->
   <app-header></app-header>
+
   <div>
     <!-- USE ROUTER OUTLET DIRECTIVE HERE -->
     <router-outlet></router-outlet>

@@ -1,0 +1,51 @@
+.toast {
+  position: fixed;
+  top: 80px;
+  right: 30px;
+  transform: none;
+  padding: 15px 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+  width: fit-content;
+  max-width: 90%;
+  opacity: 1;
+  transition: opacity 2s ease-in-out;
+}
+
+/* Error specific styling */
+.toast.error {
+  background-color: #76008e;
+  color: white;
+  border: 1px solid #c82333;
+}
+
+.toast p {
+  margin: 0;
+  font-size: 1em;
+  line-height: 1.4;
+}
+
+/* Youssef progress bar */
+.youssef {
+  display: block;
+  height: 5px;
+  width: 0%;
+  background: #dc3545;
+  border-radius: 2px;
+  margin: 12px 0 0 0;
+  animation: fillYoussef 5s linear forwards;
+}
+
+@keyframes fillYoussef {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
