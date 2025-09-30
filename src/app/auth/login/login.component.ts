@@ -30,14 +30,6 @@ export class LoginComponent implements OnInit {
 
   onLogin() {
     const { email, password } = this.loginForm.value;
-    // this.authService.login(email, password).subscribe(
-    //   (response) => {
-    //     this.loggedInUser = response;
-    //   },
-    //   (error) => {
-    //     this.loggedInUser = error;
-    //   }
-    // );
 
     this.store.dispatch(loginStart({ email, password }));
   }

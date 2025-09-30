@@ -96,6 +96,14 @@
   text-decoration: underline;
 }
 
+.validation-error {
+  color: red;
+  font-size: 13px;
+  margin-top: -15px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
 /* Responsive adjustments */
 @media (max-width: 600px) {
   .signup-container {

@@ -15,6 +15,12 @@ export class AuthService {
     return this.http.post<User>(url, body);
   }
 
+  signup(email: string, password: string) {
+    const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${FIREBASE_API_KEY}`;
+    const body = { email, password, returnSecureToken: true };
+    return this.http.post<User>(url, body);
+  }
+
   getErrorMessage(errorResponse: HttpErrorResponse) {
     let message = 'An unknown error occurred!';
     if (!errorResponse.error || !errorResponse.error.error) {
@@ -33,6 +39,10 @@ export class AuthService {
         break;
       case 'USER_DISABLED':
         message = 'The user account has been disabled.';
+        break;
+
+      case 'EMAIL_EXISTS':
+        message = 'This email already exists.';
         break;
 
       default:
